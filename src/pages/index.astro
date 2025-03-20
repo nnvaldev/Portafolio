@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Badge from '../components/Badge.astro'
+import LinkedIn from '../components/icons/iconsHead/LinkedIn.astro'
+import GitHub from '../components/icons/iconsHead/GitHub.astro'
+import SocialPill from '../components/icons/SocialPill.astro'
+import SocialPill2 from '../components/icons/SocialPill2.astro'
+import Mail from '../components/icons/iconsHead/Mail.astro'
+import Curriculum from '../components/icons/iconsHead/Curriculum.astro'
+import Formation from '../components/Formation.astro'
+import Css from '../components/icons/iconsSkills/Css.astro'	
+import React from '../components/icons/iconsSkills/React.astro'	
+import Tailwind from '../components/icons/iconsSkills/Tailwind.astro'	
+import Laravel from '../components/icons/iconsSkills/Laravel.astro'
+import TypeScript from '../components/icons/iconsSkills/TypeScript.astro'	
+import DataBase from '../components/icons/iconsSkills/DataBase.astro'
+import Python from '../components/icons/iconsSkills/Python.astro'
+import Git from '../components/icons/iconsSkills/Git.astro'
+import Docker from '../components/icons/iconsSkills/Docker.astro'
+import Node from '../components/icons/iconsSkills/Node.astro'
+import Php from '../components/icons/iconsSkills/Php.astro'
+import JavaScript from '../components/icons/iconsSkills/JavaScript.astro'	
+import AstroIcon from '../components/icons/iconsSkills/AstroIcon.astro'
+import Html from '../components/icons/iconsSkills/Html.astro'
+import Skill from '../components/icons/iconsSkills/Skill.astro'
+import Container from '../components/Container.astro'
+import FormationIcon from '../components/icons/FormationIcon.astro'
+import ProjectIcon from '../components/icons/ProjectIcon.astro'
+import Project from '../components/Project.astro'
+---
+
+<Layout title='Porfolio de nvaldev - Desarrollador y Programador Web'
+	description='nvaldev es un programador junior y desarrollador web de La Paz, Bolivia. Especializado en backend.'>
+	<main class="px-4">
+		<Container class="py-20 pb-20">
+			<center>
+				<img 
+					class="rounded-full w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-cover mb-4"
+					src="https://d2zia2w5autnlg.cloudfront.net/52261/profile-5f5d81c85f82b-small" 
+					alt="nvaldev photo" 
+				/>
+				<div class="flex justify-center items-center text-center">
+					<Badge>
+						<a href="https://www.linkedin.com/in/nvaldev/" target="_blank">
+							Disponible para trabajar
+						</a>
+					</Badge>
+				</div>
+			</center>
+			<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-100 font-bold flex flex-row gap-x-4 py-10 pb-4"> 
+				Nataniel Castillo (nvaldev)
+			</h1>
+			
+			
+			<h2 class="text-xl text-wrap">
+				<span>Programador Junior y</span>
+				<span class="text-cyan-200 font-bold">Desarrollador Web.</span>
+				<span>De La Paz, Bolivia, </span>
+				<span class="opacity-80">Enfocado en el desarrollo de aplicaciones eficientes,
+					escalables y de alto rendimiento</span>
+			</h2>
+			<nav class="gap-4 mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+				<SocialPill href="https://github.com/nnvaldev">
+					<Curriculum class="size-3" />
+					Curriculum
+				</SocialPill>
+				<SocialPill href="https://www.linkedin.com/in/nvaldev/">
+					<LinkedIn class="size-3" />
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://github.com/nnvaldev">
+					<GitHub class="size-3" />
+					GitHub
+				</SocialPill>
+				<SocialPill href="mailto:nnvaldev@gmail.com">
+					<Mail class="size-3" />	
+					nnvaldev
+				</SocialPill>
+			</nav>
+		</Container>
+		<Container id="projects" class="py-10 pb-40">
+			<h2 class="text-3xl text-wrap text-slate-100 font-semibold mb-8 flex gap-x-2 items-center">
+				<ProjectIcon class="size-9" />
+				Proyectos
+			</h2>
+			<Project />
+		</Container>
+		<Container id="skills" class="py-10 pb-40">
+			<h2 class="text-3xl text-wrap text-slate-100 font-semibold mb-8 flex gap-x-2 items-center">
+				<Skill class="size-9"/>
+				Habilidades
+			</h2>
+			<nav class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
+				<SocialPill2>
+					<Html class="size-5" />
+					HTML
+				</SocialPill2>
+				<SocialPill2>
+					<Css class="size-5" />
+					Css
+				</SocialPill2>
+				<SocialPill2>
+					<Tailwind class="size-5" />
+					Tailwind
+				</SocialPill2>
+				<SocialPill2>
+					<React class="size-5" />
+					React
+				</SocialPill2>
+				<SocialPill2>
+					<Laravel class="size-5" />
+					Laravel
+				</SocialPill2>
+				<SocialPill2>
+					<TypeScript class="size-5" />
+					TypeScript
+				</SocialPill2>
+				<SocialPill2>
+					<Php class="size-5" />
+					Php
+				</SocialPill2>
+				<SocialPill2>
+					<DataBase class="size-5" />
+					Sql
+				<SocialPill2>
+					<Python class="size-5" />
+					Flask
+				<SocialPill2>
+					<Node class="size-5" />
+					NodeJS
+				<SocialPill2>
+					<JavaScript class="size-5" />
+					JavaScript
+				<SocialPill2>
+					<Git class="size-5" />
+					Git
+				<SocialPill2>
+					<Docker class="size-5" />
+					Docker
+				<SocialPill2>
+					<AstroIcon class="size-5" />
+					Astro
+			</nav>
+		</Container>
+		<Container id="formation" class="pb-40">
+			<h2 class="text-3xl text-wrap text-slate-100 font-semibold mb-8 flex gap-x-2 items-center">
+				<FormationIcon class="size-9"/> 
+				Formacion academica
+			</h2>
+			<Formation />
+		</Container>
+	</main>
+</Layout>

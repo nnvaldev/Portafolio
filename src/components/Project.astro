@@ -1,0 +1,46 @@
+---
+import ProjectItem from "./ProjectItem.astro";
+
+const PROJECT = [
+    {
+        name: "Portafolio",
+        description: "Portafolio de nvaldev",
+        url: "https://nvaldev.com",
+        github: "#",
+        image: "/projectsCap/capture.jpg",
+        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+    },
+    {
+        name: "Portafolio",
+        description: "Portafolio de nvaldev",
+        url: "https://nvaldev.com",
+        github: "#",
+        image: "/projectsCap/capture.jpg",
+        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+    },
+    {
+        name: "Portafolio",
+        description: "Portafolio de nvaldev",
+        url: "https://nvaldev.com",
+        github: "#",
+        image: "/projectsCap/capture.jpg",
+        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+    },
+    {
+        name: "Portafolio",
+        description: "Portafolio de nvaldev",
+        url: "https://nvaldev.com",
+        github: "#",
+        image: "/projectsCap/capture.jpg",
+        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+    }
+];
+---
+
+<ol class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    {PROJECT.map(project => (
+        <li>
+            <ProjectItem {...project} />
+        </li>
+    ))}
+</ol>
