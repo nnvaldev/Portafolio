@@ -1,0 +1,22 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE = [
+    {
+        date: "2025 - Presente",
+        title: "Fullstack & Cloud Engineer",
+        company: "Trabajito Bolivia",
+        description: "Lidero la evolución tecnológica y la infraestructura cloud de la plataforma. Diseñé e implementé la migración a AWS Fargate con AWS CDK (IaC), automatizando entornos aislados de Staging y Producción, e integré flujos CI/CD entre GitHub y AWS CodeBuild logrando despliegues sin tiempo de inactividad (Zero-Downtime). Desarrollé servicios backend en Laravel y Node.js consumidos por una app móvil de alta fidelidad en Flutter (arquitectura limpia), gestioné la distribución nativa en App Store y Google Play, y configuré observabilidad con CloudWatch reduciendo incidentes en producción. Además creé el sistema de componentes en Figma e implementé un Dark Mode nativo.",
+        technologies: ["AWS Fargate", "AWS CDK", "CodeBuild", "CloudWatch", "Flutter", "Laravel", "Node.js", "Docker", "Figma"],
+        current: true
+    }
+]
+---
+
+<div class="space-y-6">
+    {EXPERIENCE.map((exp, index) => (
+        <div class="animate-on-scroll" style={`transition-delay: ${index * 0.1}s`}>
+            <ExperienceItem {...exp} />
+        </div>
+    ))}
+</div>

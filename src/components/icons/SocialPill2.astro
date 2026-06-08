@@ -1,15 +1,55 @@
+---
+const { class: className, ...rest } = Astro.props;
+---
 
-<a 
+<div
     class={`
+        skill-card
         text-slate-100
-        bg-teal-900
-        border border-white/10 rounded-full
-        flex justify-center items-center gap-x-2 
-        px-2 py-2
+        bg-gradient-to-br from-teal-900/50 to-cyan-900/30
+        border border-cyan-500/20
+        rounded-xl
+        flex justify-center items-center gap-x-3
+        px-4 py-3
+        transition-all duration-300
+        hover:border-cyan-400/40
+        hover:from-teal-800/60 hover:to-cyan-800/40
+        hover:shadow-lg hover:shadow-cyan-500/10
+        hover:-translate-y-1
+        cursor-default
+        group
+        ${className || ''}
     `}
-    {...Astro.props}
-    target="_blank"
-    rel="noopener noreferrer"
-    >
-    <slot />
-</a>
+    {...rest}
+>
+    <span class="skill-icon inline-flex items-center gap-x-3 transition-transform duration-300 group-hover:scale-110 group-hover:text-cyan-300">
+        <slot />
+    </span>
+</div>
+
+<style>
+    .skill-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skill-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(100, 255, 218, 0.1),
+            transparent
+        );
+        transition: left 0.5s ease;
+    }
+
+    .skill-card:hover::before {
+        left: 100%;
+    }
+</style>

@@ -1,46 +1,96 @@
 ---
 import ProjectItem from "./ProjectItem.astro";
+import ProjectModal from "./ProjectModal.astro";
 
 const PROJECT = [
     {
-        name: "Portafolio",
-        description: "Portafolio de nvaldev",
-        url: "https://nvaldev.com",
-        github: "#",
+        name: "IDM E-Commerce — Marketplace Multi-empresa ERP",
+        description: "Plataforma distribuida de alta disponibilidad para gestión de inventarios y ventas híbridas (B2C / B2B a crédito), con backend asíncrono y facturación electrónica SIAT.",
+        longDescription: "Trabajo de Taller de Grado (UMSA). Plataforma distribuida de alta disponibilidad para la gestión de inventarios heterogéneos y flujos de venta híbridos: B2C minorista y B2B mayorista a crédito con control estricto de saldo de línea.",
+        features: [
+            "Backend concurrente asíncrono con FastAPI + SQLAlchemy Async sobre PostgreSQL 16, aplicando bloqueos pesimistas (SELECT ... FOR UPDATE) para garantizar consistencia absoluta en mutaciones críticas de stock.",
+            "Micro-motor fiscal conforme al estándar SIAT (Bolivia): auto-emisión de facturas electrónicas en XML firmado (SHA-256) y generación de PDF con fpdf2, con flujos asíncronos en modo de contingencia ante caídas del servidor tributario.",
+            "Logística distribuida multi-almacén interdepartamental (LP, CBBA, SCZ) con control de traspasos por estados transaccionales y escaneo nativo de códigos QR vía cámara web en el frontend.",
+            "Panel administrativo y dashboards en React (TypeScript estricto) con control de acceso basado en roles (RBAC) granular en UI/API y analíticas de KPIs con Recharts."
+        ],
+        url: "#",
+        github: "https://github.com/nnvaldev/idm-ecommerce",
         image: "/projectsCap/capture.jpg",
-        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+        images: ["/projectsCap/capture.jpg"],
+        tags: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "React", "TypeScript", "Recharts", "Docker"]
     },
     {
-        name: "Portafolio",
-        description: "Portafolio de nvaldev",
-        url: "https://nvaldev.com",
+        name: "Proyecto en construcción",
+        description: "Nuevo proyecto en desarrollo. Pronto más detalles por aquí. 🚧",
+        longDescription: "",
+        features: [],
+        url: "#",
         github: "#",
         image: "/projectsCap/capture.jpg",
-        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
-    },
-    {
-        name: "Portafolio",
-        description: "Portafolio de nvaldev",
-        url: "https://nvaldev.com",
-        github: "#",
-        image: "/projectsCap/capture.jpg",
-        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
-    },
-    {
-        name: "Portafolio",
-        description: "Portafolio de nvaldev",
-        url: "https://nvaldev.com",
-        github: "#",
-        image: "/projectsCap/capture.jpg",
-        tags: ["Astro", "Tailwind", "Laravel", "Vue", "React", "PHP", "JavaScript", "Typescript", "NodeJS", "Git", "Docker", "SQL"]
+        images: [],
+        tags: ["Próximamente"],
+        wip: true
     }
 ];
 ---
 
 <ol class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    {PROJECT.map(project => (
+    {PROJECT.map((project, index) => (
         <li>
-            <ProjectItem {...project} />
+            <ProjectItem {...project} index={index} />
         </li>
     ))}
 </ol>
+
+{PROJECT.map((project, index) => (
+    !project.wip && <ProjectModal {...project} index={index} />
+))}
+
+<script>
+    // Mover los modales al <body> para que escapen de ancestros con `transform`
+    // (.animate-on-scroll) que rompen el posicionamiento `fixed`.
+    document.querySelectorAll('.project-modal').forEach(m => document.body.appendChild(m));
+
+    function openModal(id: string) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal: Element) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+
+    // Abrir modal al hacer clic en una card (ignora clics en enlaces)
+    document.querySelectorAll('[data-modal-open]').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if ((e.target as HTMLElement).closest('a')) return;
+            const id = card.getAttribute('data-modal-open');
+            if (id) openModal(id);
+        });
+    });
+
+    // Cerrar: botón de cerrar o backdrop
+    document.querySelectorAll('.project-modal').forEach(modal => {
+        modal.querySelectorAll('[data-modal-close]').forEach(btn => {
+            btn.addEventListener('click', () => closeModal(modal));
+        });
+        // Cambiar imagen principal desde las miniaturas
+        const main = modal.querySelector('[data-modal-main]') as HTMLImageElement | null;
+        modal.querySelectorAll('[data-thumb]').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                if (main) main.src = (thumb as HTMLElement).getAttribute('data-thumb') || main.src;
+            });
+        });
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('.project-modal:not(.hidden)').forEach(closeModal);
+    });
+</script>
