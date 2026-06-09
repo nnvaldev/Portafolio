@@ -93,4 +93,26 @@ const PROJECT = [
         if (e.key !== 'Escape') return;
         document.querySelectorAll('.project-modal:not(.hidden)').forEach(closeModal);
     });
+
+    // Tilt 3D + glow que sigue el cursor (solo puntero fino, sin reduced-motion)
+    const enableTilt = window.matchMedia('(pointer: fine)').matches
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (enableTilt) {
+        document.querySelectorAll<HTMLElement>('[data-tilt]').forEach(card => {
+            card.addEventListener('pointermove', (e) => {
+                const r = card.getBoundingClientRect();
+                const px = (e.clientX - r.left) / r.width;
+                const py = (e.clientY - r.top) / r.height;
+                const rotX = (py - 0.5) * -7;
+                const rotY = (px - 0.5) * 7;
+                card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+                card.style.setProperty('--gx', `${px * 100}%`);
+                card.style.setProperty('--gy', `${py * 100}%`);
+            });
+            card.addEventListener('pointerleave', () => {
+                card.style.transform = '';
+            });
+        });
+    }
 </script>

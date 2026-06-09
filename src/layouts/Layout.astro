@@ -21,6 +21,10 @@ const { description, title } = Astro.props
 		<title>{title}</title>
 	</head>
 	<body>
+		<!-- Barra de progreso de scroll -->
+		<div id="scroll-progress"></div>
+		<!-- Spotlight que sigue el cursor -->
+		<div id="cursor-spotlight" aria-hidden="true"></div>
 		<Header />
 		<slot />
 		<Footer />
@@ -43,6 +47,37 @@ const { description, title } = Astro.props
 		flex-direction: column;
 		min-height: 100vh;
 		overflow-x: hidden;
+	}
+
+	/* Barra de progreso de scroll */
+	#scroll-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 3px;
+		width: 0%;
+		z-index: 200;
+		background: linear-gradient(90deg, #64ffda, #00d4aa);
+		box-shadow: 0 0 12px rgba(100, 255, 218, 0.6);
+		transition: width 0.1s linear;
+	}
+
+	/* Spotlight que sigue el cursor */
+	#cursor-spotlight {
+		position: fixed;
+		inset: 0;
+		z-index: -5;
+		pointer-events: none;
+		background: radial-gradient(
+			600px circle at var(--mx, 50%) var(--my, 50%),
+			rgba(56, 189, 248, 0.07),
+			transparent 45%
+		);
+		transition: background 0.15s ease-out;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#cursor-spotlight { display: none; }
 	}
 
 	/* Animaciones de entrada */
@@ -248,4 +283,22 @@ const { description, title } = Astro.props
 	document.querySelectorAll('.animate-on-scroll').forEach(el => {
 		observer.observe(el);
 	});
+
+	// Barra de progreso de scroll
+	const progress = document.getElementById('scroll-progress');
+	function updateProgress() {
+		const h = document.documentElement;
+		const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+		if (progress) progress.style.width = `${Math.min(100, scrolled * 100)}%`;
+	}
+	window.addEventListener('scroll', updateProgress, { passive: true });
+	updateProgress();
+
+	// Spotlight que sigue el cursor (solo dispositivos con puntero fino)
+	if (window.matchMedia('(pointer: fine)').matches) {
+		window.addEventListener('pointermove', (e) => {
+			document.documentElement.style.setProperty('--mx', `${e.clientX}px`);
+			document.documentElement.style.setProperty('--my', `${e.clientY}px`);
+		}, { passive: true });
+	}
 </script>

@@ -104,6 +104,12 @@ const navItems = [
         color: #64ffda;
     }
 
+    .nav-item.active {
+        background: rgba(100, 255, 218, 0.12);
+        color: #64ffda;
+        box-shadow: inset 3px 0 0 #64ffda;
+    }
+
     .nav-icon {
         width: 24px;
         height: 24px;
@@ -210,4 +216,20 @@ const navItems = [
             toggleMenu();
         });
     });
+
+    // Resaltar la sección activa en el sidebar
+    const sections = document.querySelectorAll('main section[id]');
+    const navItems = document.querySelectorAll<HTMLAnchorElement>('.sidebar .nav-item');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.getAttribute('id');
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+            });
+        });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
 </script>
