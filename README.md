@@ -1,48 +1,60 @@
-# Astro Starter Kit: Basics
+# Portafolio — Alexander Castillo (`@nvaldev`)
 
-```sh
-npm create astro@latest -- --template basics
-```
+Portafolio personal de **Alexander Nataniel Castillo Centellas**, _Fullstack & Cloud Engineer · DevOps · UI/UX Designer_ de La Paz, Bolivia.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Sitio de una sola página construido con **Astro + Tailwind CSS**, con tema claro/oscuro, animaciones al hacer scroll y un diseño responsive pensado para destacar experiencia y proyectos.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ✨ Características
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- 🌗 **Tema claro / oscuro** con persistencia en `localStorage` y sin parpadeo en la carga inicial.
+- 🎬 **Hero animado** (grid + blobs, anillo giratorio, efecto _typing_) para captar la atención.
+- 📱 **Responsive**: sidebar en desktop y menú overlay en móvil.
+- 🧩 Secciones: Proyectos (con modal de detalle), Experiencia, Habilidades, Formación, Sobre mí y Contacto.
+- ⚡ Detalles de UX: barra de progreso de scroll, spotlight que sigue el cursor, tilt 3D en las tarjetas y animaciones respetuosas con `prefers-reduced-motion`.
 
-## 🚀 Project Structure
+## 🛠️ Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- [Astro](https://astro.build) `^5`
+- [Tailwind CSS](https://tailwindcss.com) `^3` (`darkMode: 'class'`)
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (`@fontsource-variable`)
+
+## 🚀 Estructura del proyecto
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/                 # Assets estáticos (favicon, capturas, cv_es.pdf)
 ├── src/
+│   ├── assets/             # Imágenes procesadas por Astro (foto de perfil, svg)
+│   ├── components/         # Componentes .astro (Header, Project, Experience, …)
+│   │   └── icons/          # Íconos SVG como componentes
 │   ├── layouts/
-│   │   └── Layout.astro
+│   │   └── Layout.astro    # Layout base: temas, estilos globales, scripts
 │   └── pages/
-│       └── index.astro
+│       └── index.astro     # Página principal
+├── astro.config.mjs
+├── tailwind.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧞 Comandos
 
-## 🧞 Commands
+Todos los comandos se ejecutan desde la raíz del proyecto:
 
-All commands are run from the root of the project, from a terminal:
+| Comando             | Acción                                            |
+| :------------------ | :------------------------------------------------ |
+| `npm install`       | Instala las dependencias                          |
+| `npm run dev`       | Servidor de desarrollo en `localhost:4321`        |
+| `npm run build`     | Compila el sitio de producción en `./dist/`       |
+| `npm run preview`   | Previsualiza el build localmente                  |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🎨 Personalización rápida
 
-## 👀 Want to learn more?
+- **Tema y colores**: variables CSS en el `<style is:global>` de `src/layouts/Layout.astro` (`:root` para claro, `html.dark` para oscuro).
+- **Experiencia / Proyectos / Formación**: editar los arreglos de datos en `src/components/Experience.astro`, `Project.astro` y `Formation.astro`.
+- **Foto de perfil**: `src/assets/profile photo.jpg` (importada en `src/pages/index.astro`).
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📫 Contacto
+
+- ✉️ [nnvaldev@gmail.com](mailto:nnvaldev@gmail.com)
+- 💼 [linkedin.com/in/nvaldev](https://www.linkedin.com/in/nvaldev/)
+- 🐙 [github.com/nnvaldev](https://github.com/nnvaldev)

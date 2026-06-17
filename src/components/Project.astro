@@ -15,35 +15,46 @@ const PROJECT = [
         ],
         url: "#",
         github: "https://github.com/nnvaldev/idm-ecommerce",
-        image: "/projectsCap/capture.jpg",
-        images: ["/projectsCap/capture.jpg"],
+        image: "/projectsCap/cap_catalog.png",
+        images: ["/projectsCap/cap_catalog.png", "/projectsCap/cap_catalog.png"],
         tags: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "React", "TypeScript", "Recharts", "Docker"]
     },
     {
-        name: "Proyecto en construcción",
-        description: "Nuevo proyecto en desarrollo. Pronto más detalles por aquí. 🚧",
-        longDescription: "",
-        features: [],
+        name: "AgendaPro — SaaS de Reservas y Citas",
+        description: "Plataforma de agendamiento online para negocios de servicios: reservas en tiempo real, pago de seña y recordatorios automáticos, desde un panel multi-negocio. En desarrollo activo. 🚧",
+        longDescription: "Proyecto en desarrollo activo. AgendaPro es un SaaS multi-tenant que permite a barberías, consultorios, canchas y cualquier negocio de servicios recibir reservas online 24/7 sin llamadas ni mensajes. El cliente reserva en segundos desde una página pública, el negocio gestiona su agenda y su staff desde un solo panel, y el pago de seña reduce las ausencias. Cada negocio trabaja aislado en su propio espacio, listo para escalar.",
+        features: [
+            "Reserva pública sin fricción: el cliente elige servicio, profesional y horario disponible en segundos, sin necesidad de crear una cuenta.",
+            "Agenda y disponibilidad en tiempo real con WebSockets (Node.js): los cupos se bloquean al instante para evitar reservas dobles.",
+            "Pago de seña/anticipo con pasarela integrada para reducir ausencias (no-shows), con confirmación automática y reembolsos.",
+            "Recordatorios automáticos por email/WhatsApp y reprogramación o cancelación con un solo clic.",
+            "Panel multi-negocio (multi-tenant) en Laravel: gestión de servicios, staff, horarios y métricas de ocupación e ingresos.",
+            "Roles diferenciados (dueño / staff / cliente), interfaz responsive en Tailwind con modo claro/oscuro y despliegue en Docker con CI/CD."
+        ],
         url: "#",
         github: "#",
-        image: "/projectsCap/capture.jpg",
+        image: "/projectsCap/en-construccion.svg",
         images: [],
-        tags: ["Próximamente"],
+        tags: ["Laravel", "PHP", "Node.js", "Tailwind", "MySQL", "WebSockets", "Docker"],
         wip: true
     }
 ];
 ---
 
 <ol class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    {PROJECT.map((project, index) => (
-        <li>
-            <ProjectItem {...project} index={index} />
-        </li>
-    ))}
+    {PROJECT.map((project, index) => {
+        const openable = !!(project.longDescription || (project.features && project.features.length > 0));
+        return (
+            <li>
+                <ProjectItem {...project} index={index} openable={openable} />
+            </li>
+        );
+    })}
 </ol>
 
 {PROJECT.map((project, index) => (
-    !project.wip && <ProjectModal {...project} index={index} />
+    (project.longDescription || (project.features && project.features.length > 0)) &&
+        <ProjectModal {...project} index={index} />
 ))}
 
 <script>

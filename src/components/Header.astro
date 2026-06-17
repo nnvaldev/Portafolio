@@ -62,9 +62,9 @@ const navItems = [
         top: 50%;
         transform: translateY(-50%);
         flex-direction: column;
-        background: rgba(10, 25, 47, 0.9);
+        background: var(--sidebar-bg);
         backdrop-filter: blur(10px);
-        border-right: 1px solid rgba(100, 255, 218, 0.1);
+        border-right: 1px solid var(--card-border);
         border-radius: 0 12px 12px 0;
         padding: 1rem 0.5rem;
         gap: 0.5rem;
@@ -92,7 +92,7 @@ const navItems = [
         align-items: center;
         gap: 12px;
         padding: 12px;
-        color: #8892b0;
+        color: var(--text-muted);
         text-decoration: none;
         border-radius: 8px;
         transition: all 0.2s ease;
@@ -100,14 +100,14 @@ const navItems = [
     }
 
     .nav-item:hover {
-        background: rgba(100, 255, 218, 0.1);
-        color: #64ffda;
+        background: var(--accent-soft);
+        color: var(--accent);
     }
 
     .nav-item.active {
-        background: rgba(100, 255, 218, 0.12);
-        color: #64ffda;
-        box-shadow: inset 3px 0 0 #64ffda;
+        background: var(--accent-soft);
+        color: var(--accent);
+        box-shadow: inset 3px 0 0 var(--accent);
     }
 
     .nav-icon {
@@ -132,18 +132,18 @@ const navItems = [
         top: 1rem;
         right: 1rem;
         z-index: 110;
-        background: rgba(10, 25, 47, 0.9);
+        background: var(--sidebar-bg);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(100, 255, 218, 0.2);
+        border: 1px solid var(--card-border);
         border-radius: 8px;
         padding: 0.75rem;
-        color: #64ffda;
+        color: var(--accent);
         cursor: pointer;
         transition: all 0.2s ease;
     }
 
     .mobile-menu-btn:hover {
-        background: rgba(100, 255, 218, 0.1);
+        background: var(--accent-soft);
     }
 
     .menu-icon,
@@ -156,7 +156,7 @@ const navItems = [
     .mobile-menu {
         position: fixed;
         inset: 0;
-        background: rgba(10, 25, 47, 0.98);
+        background: var(--overlay-bg);
         backdrop-filter: blur(10px);
         z-index: 105;
         display: flex;
@@ -177,7 +177,7 @@ const navItems = [
         justify-content: center;
         gap: 1rem;
         padding: 1rem 2rem;
-        color: #ccd6f6;
+        color: var(--text-strong);
         text-decoration: none;
         font-size: 1.25rem;
         border-radius: 8px;
@@ -185,8 +185,8 @@ const navItems = [
     }
 
     .mobile-nav-item:hover {
-        background: rgba(100, 255, 218, 0.1);
-        color: #64ffda;
+        background: var(--accent-soft);
+        color: var(--accent);
     }
 
     .mobile-nav-icon {
