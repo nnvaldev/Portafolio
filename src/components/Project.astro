@@ -38,6 +38,24 @@ const PROJECT = [
         tags: ["Astro", "JavaScript", "Tailwind", "Leaflet", "OpenStreetMap", "i18n", "Accesibilidad"]
     },
     {
+        name: "JobBoard Pro — Portal de Empleos Full-Stack",
+        description: "Portal de empleos de doble cara (candidato / empresa) construido como monorepo: API NestJS + Prisma sobre PostgreSQL y frontend Next.js 15. Autenticación JWT con refresh automático, roles y gestión completa del ciclo de postulación.",
+        longDescription: "Portal de empleos que resuelve las dos caras del proceso de contratación en un solo producto: la empresa publica vacantes, controla borradores y revisa postulantes desde su panel; el candidato busca con filtros, se postula con carta de presentación y sigue el estado de cada aplicación. Construido como monorepo pnpm con backend y frontend desacoplados, compartiendo un paquete de tipos y enums para que ambos lados hablen exactamente el mismo lenguaje.",
+        features: [
+            "Monorepo con pnpm workspaces: apps/web (Next.js 15, App Router y Server Components), apps/api (NestJS 11) y packages/shared con los enums y etiquetas de dominio tipados, eliminando la duplicación de contratos entre backend y frontend.",
+            "Autenticación JWT de doble token (access de 15 min + refresh de 7 días) con hashing bcrypt, y un cliente HTTP propio que intercepta los 401, renueva el token y reintenta la petición original de forma transparente para el usuario; middleware de Next.js que protege las rutas del panel antes de renderizar.",
+            "Control de acceso por roles CANDIDATE / EMPLOYER mediante guards y decoradores personalizados, reforzado con verificación de propiedad a nivel de servicio: una empresa nunca puede leer ni modificar ofertas o postulantes que no pertenezcan a su compañía.",
+            "Buscador público con filtros combinables (texto sobre título, descripción y nombre de empresa; ubicación, tipo de contrato, seniority y modalidad remota) y paginación resuelta en servidor con Prisma, sobre un esquema indexado por estado, ubicación, tipo y seniority.",
+            "Ciclo de vida completo de la vacante: la empresa la crea como borrador o publicada, el candidato se postula con carta de presentación —con restricción única compuesta que impide postulaciones duplicadas— y la empresa mueve el estado por pendiente, en revisión, aceptada o rechazada.",
+            "API documentada con Swagger y validación global vía class-validator en modo estricto (whitelist + rechazo de campos no declarados), PostgreSQL 16 orquestado con Docker Compose y seed de datos con cuentas demo para levantar el proyecto de cero en minutos."
+        ],
+        url: "#",
+        github: "https://github.com/nnvaldev/JobBoard",
+        image: "/projectsCap/cap_jb_home.png",
+        images: ["/projectsCap/cap_jb_home.png", "/projectsCap/cap_jb_ofertas.png", "/projectsCap/cap_jb_empresa.png", "/projectsCap/cap_jb_nueva.png"],
+        tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "JWT", "Docker", "Tailwind"]
+    },
+    {
         name: "AgendaPro — SaaS de Reservas y Citas",
         description: "Plataforma de agendamiento online para negocios de servicios: reservas en tiempo real, pago de seña y recordatorios automáticos, desde un panel multi-negocio. En desarrollo activo. 🚧",
         longDescription: "Proyecto en desarrollo activo. AgendaPro es un SaaS multi-tenant que permite a barberías, consultorios, canchas y cualquier negocio de servicios recibir reservas online 24/7 sin llamadas ni mensajes. El cliente reserva en segundos desde una página pública, el negocio gestiona su agenda y su staff desde un solo panel, y el pago de seña reduce las ausencias. Cada negocio trabaja aislado en su propio espacio, listo para escalar.",
