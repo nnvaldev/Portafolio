@@ -43,14 +43,16 @@ const hasGithub = github && github !== "#";
         </button>
 
         <!-- Galería -->
-        <div class="rounded-t-2xl overflow-hidden">
-            <img data-modal-main src={gallery[0]} alt={name} class="w-full h-56 sm:h-72 object-cover" />
+        <div class="rounded-t-2xl overflow-hidden bg-slate-950">
+            <a data-modal-zoom href={gallery[0]} target="_blank" rel="noopener noreferrer" title="Abrir imagen en tamaño real" class="block">
+                <img data-modal-main src={gallery[0]} alt={name} class="w-full max-h-[60vh] object-contain" />
+            </a>
         </div>
         {gallery.length > 1 && (
             <div class="flex gap-2 px-6 pt-4 overflow-x-auto">
-                {gallery.map(src => (
-                    <button type="button" data-thumb={src} class="flex-shrink-0">
-                        <img src={src} alt={name} class="h-14 w-20 object-cover rounded-lg border border-cyan-500/20 hover:border-cyan-400/60 transition-colors" />
+                {gallery.map((src, i) => (
+                    <button type="button" data-thumb={src} class:list={["flex-shrink-0 rounded-lg border transition-colors", i === 0 ? "border-cyan-400/70" : "border-cyan-500/20 hover:border-cyan-400/60"]}>
+                        <img src={src} alt={name} class="h-14 w-20 rounded-lg bg-slate-950 object-contain" />
                     </button>
                 ))}
             </div>

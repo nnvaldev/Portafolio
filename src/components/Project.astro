@@ -110,9 +110,20 @@ const PROJECT = [
         });
         // Cambiar imagen principal desde las miniaturas
         const main = modal.querySelector('[data-modal-main]') as HTMLImageElement | null;
-        modal.querySelectorAll('[data-thumb]').forEach(thumb => {
+        const zoom = modal.querySelector('[data-modal-zoom]') as HTMLAnchorElement | null;
+        const thumbs = modal.querySelectorAll('[data-thumb]');
+        thumbs.forEach(thumb => {
             thumb.addEventListener('click', () => {
-                if (main) main.src = (thumb as HTMLElement).getAttribute('data-thumb') || main.src;
+                const src = (thumb as HTMLElement).getAttribute('data-thumb');
+                if (!src || !main) return;
+                main.src = src;
+                if (zoom) zoom.href = src;
+                thumbs.forEach(t => {
+                    const active = t === thumb;
+                    t.classList.toggle('border-cyan-400/70', active);
+                    t.classList.toggle('border-cyan-500/20', !active);
+                    t.classList.toggle('hover:border-cyan-400/60', !active);
+                });
             });
         });
     });
