@@ -20,6 +20,24 @@ const PROJECT = [
         tags: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "React", "TypeScript", "Recharts", "Docker"]
     },
     {
+        name: "La Paz Tour — Turismo Accesible en La Paz",
+        description: "Guía web de La Paz con mapa interactivo, filtro de accesibilidad en silla de ruedas, rutas turísticas trazadas, conversor multi-moneda y reservas de experiencias. Trilingüe (ES/EN/PT).",
+        longDescription: "Google Maps te dice dónde estás; La Paz Tour te dice si puedes entrar. Aplicación web pensada para el turista que llega a La Paz con poco tiempo y muchas dudas: cuánto vale su plata, qué lugares son realmente accesibles, qué ruta hacer y cómo reservarla. Todo resuelto en una sola página, sin instalar nada y sin depender de APIs de pago.",
+        features: [
+            "Mapa interactivo con Leaflet + OpenStreetMap (sin API key ni costo): 19 puntos georreferenciados con pines diferenciados por accesibilidad, popups con foto, precio de entrada, horario, contacto directo por WhatsApp y enlace de cómo llegar; incluye geolocalización del usuario.",
+            "Filtro de accesibilidad como funcionalidad protagonista: un clic deja en el mapa y en la lista solo los sitios con rampas, baños adaptados o acceso a nivel, con datos validados junto a aliados como FEDEBOL.",
+            "6 rutas turísticas dibujadas sobre el mapa como polilínea guía con paradas numeradas y ajuste automático de encuadre, cada una con duración, número de paradas y precio estimado.",
+            "Conversor multi-moneda (8 divisas, tasa paralela) que no solo convierte: al elegir una moneda reprecia en vivo toda la página —entradas, rutas y experiencias— mediante eventos personalizados y persistencia en localStorage.",
+            "Internacionalización propia ES / EN / PT sin librerías externas: diccionario y sistema de atributos data-i18n que traduce texto, aria-labels y contenido generado dinámicamente, más modo claro/oscuro persistente.",
+            "Módulo de experiencias tipo marketplace con checkout demo: modal de reserva, cálculo de total por número de personas y generación de código de reserva, junto a un directorio de comercios locales para empujar la economía del barrio."
+        ],
+        url: "#",
+        github: "https://github.com/nnvaldev/LaPazTour",
+        image: "/projectsCap/cap_lpt_hero.png",
+        images: ["/projectsCap/cap_lpt_hero.png", "/projectsCap/cap_lpt_mapa.png", "/projectsCap/cap_lpt_rutas.png", "/projectsCap/cap_lpt_experiencias.png"],
+        tags: ["Astro", "JavaScript", "Tailwind", "Leaflet", "OpenStreetMap", "i18n", "Accesibilidad"]
+    },
+    {
         name: "AgendaPro — SaaS de Reservas y Citas",
         description: "Plataforma de agendamiento online para negocios de servicios: reservas en tiempo real, pago de seña y recordatorios automáticos, desde un panel multi-negocio. En desarrollo activo. 🚧",
         longDescription: "Proyecto en desarrollo activo. AgendaPro es un SaaS multi-tenant que permite a barberías, consultorios, canchas y cualquier negocio de servicios recibir reservas online 24/7 sin llamadas ni mensajes. El cliente reserva en segundos desde una página pública, el negocio gestiona su agenda y su staff desde un solo panel, y el pago de seña reduce las ausencias. Cada negocio trabaja aislado en su propio espacio, listo para escalar.",
