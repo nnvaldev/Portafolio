@@ -35,10 +35,71 @@ import ExperienceIcon from '../components/icons/ExperienceIcon.astro'
 import Experience from '../components/Experience.astro'
 import Stats from '../components/Stats.astro'
 import profilePhoto from '../assets/profile photo.jpg'
+import Vue from '../components/icons/iconsSkills/Vue.astro'
+import NextJs from '../components/icons/iconsSkills/NextJs.astro'
+import NestJs from '../components/icons/iconsSkills/NestJs.astro'
+import Prisma from '../components/icons/iconsSkills/Prisma.astro'
+import Redis from '../components/icons/iconsSkills/Redis.astro'
+import Terraform from '../components/icons/iconsSkills/Terraform.astro'
+import GitHubActions from '../components/icons/iconsSkills/GitHubActions.astro'
+import Linux from '../components/icons/iconsSkills/Linux.astro'
+
+const SKILL_GROUPS = [
+	{
+		title: 'Frontend',
+		description: 'Interfaces web tipadas, accesibles y responsive.',
+		skills: [
+			{ name: 'TypeScript', icon: TypeScript },
+			{ name: 'React', icon: React },
+			{ name: 'Vue', icon: Vue },
+			{ name: 'Next.js', icon: NextJs },
+			{ name: 'Astro', icon: AstroIcon },
+			{ name: 'Tailwind', icon: Tailwind },
+			{ name: 'JavaScript', icon: JavaScript },
+			{ name: 'HTML', icon: Html },
+			{ name: 'CSS', icon: Css },
+		],
+	},
+	{
+		title: 'Backend y datos',
+		description: 'APIs, colas, lógica de negocio y bases de datos.',
+		skills: [
+			{ name: 'Python', icon: Python },
+			{ name: 'FastAPI', icon: FastApi },
+			{ name: 'PHP', icon: Php },
+			{ name: 'Laravel', icon: Laravel },
+			{ name: 'Node.js', icon: Node },
+			{ name: 'NestJS', icon: NestJs },
+			{ name: 'PostgreSQL', icon: DataBase },
+			{ name: 'Redis', icon: Redis },
+			{ name: 'Prisma', icon: Prisma },
+		],
+	},
+	{
+		title: 'Cloud y DevOps',
+		description: 'Infraestructura como código, contenedores y CI/CD.',
+		skills: [
+			{ name: 'AWS', icon: Aws },
+			{ name: 'Docker', icon: Docker },
+			{ name: 'Terraform', icon: Terraform },
+			{ name: 'GitHub Actions', icon: GitHubActions },
+			{ name: 'Linux', icon: Linux },
+			{ name: 'Git', icon: Git },
+		],
+	},
+	{
+		title: 'Mobile y diseño',
+		description: 'Apps nativas publicadas y sistemas de diseño.',
+		skills: [
+			{ name: 'Flutter', icon: Flutter },
+			{ name: 'Figma', icon: Figma },
+		],
+	},
+]
 ---
 
 <Layout title='Alexander Castillo (nvaldev) — Fullstack & Cloud Engineer'
-	description='Alexander Castillo (nvaldev) es Fullstack & Cloud Engineer de La Paz, Bolivia. Especializado en arquitecturas Cloud en AWS (Fargate, CDK), CI/CD, TypeScript y desarrollo mobile con Flutter.'>
+	description='Alexander Castillo (nvaldev), Fullstack & Cloud Engineer de La Paz, Bolivia, con 2+ años de experiencia. Python/FastAPI, Laravel, React, Vue, Flutter, AWS (Fargate, CDK), Docker, Terraform y CI/CD.'>
 
 	<!-- Fondo decorativo -->
 	<div class="fixed inset-0 -z-10 overflow-hidden">
@@ -96,14 +157,15 @@ import profilePhoto from '../assets/profile photo.jpg'
 
 				<!-- Descripción -->
 				<p class="text-lg text-slate-400 text-center max-w-2xl mx-auto mb-6" style="animation: fadeInUp 0.8s ease-out 0.4s both;">
-					Fullstack & Cloud Engineer de <span class="text-cyan-300">La Paz, Bolivia</span>.
-					Diseño e implemento arquitecturas <span class="text-cyan-300">Cloud en AWS</span> (Fargate, CDK),
-					automatizo CI/CD y construyo apps web y mobile de alto impacto.
+					Fullstack & Cloud Engineer de <span class="text-cyan-300">La Paz, Bolivia</span>, con
+					<span class="text-cyan-300">2+ años de experiencia</span>. Construyo productos de punta a punta:
+					backends en Python y PHP, interfaces en React y Vue, apps en Flutter, y la infraestructura
+					que los sostiene en <span class="text-cyan-300">AWS</span> con Docker, Terraform y CI/CD.
 				</p>
 
 				<!-- Chips de tecnologías clave -->
 				<div class="flex flex-wrap justify-center gap-2 mb-8" style="animation: fadeInUp 0.8s ease-out 0.45s both;">
-					{["AWS · Fargate · CDK", "Python · FastAPI", "React · TypeScript", "Flutter", "CI/CD · DevOps"].map(tag => (
+					{["AWS · Fargate · CDK", "Python · FastAPI", "Laravel · PHP", "React · Vue · TypeScript", "Flutter", "Docker · Terraform · CI/CD"].map(tag => (
 						<span class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 font-medium">
 							{tag}
 						</span>
@@ -194,81 +256,23 @@ import profilePhoto from '../assets/profile photo.jpg'
 					<Skill class="size-10 text-cyan-400"/>
 					<span>Habilidades</span>
 				</h2>
-				<p class="text-slate-400 mb-10">Tecnologias con las que trabajo</p>
+				<p class="text-slate-400 mb-10">Tecnologías que uso en producción y en mis proyectos</p>
 			</div>
-			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 animate-on-scroll animate-delay-200">
-				<SocialPill2>
-					<Html class="size-6" />
-					HTML
-				</SocialPill2>
-				<SocialPill2>
-					<Css class="size-6" />
-					CSS
-				</SocialPill2>
-				<SocialPill2>
-					<JavaScript class="size-6" />
-					JavaScript
-				</SocialPill2>
-				<SocialPill2>
-					<TypeScript class="size-6" />
-					TypeScript
-				</SocialPill2>
-				<SocialPill2>
-					<React class="size-6" />
-					React
-				</SocialPill2>
-				<SocialPill2>
-					<Tailwind class="size-6" />
-					Tailwind
-				</SocialPill2>
-				<SocialPill2>
-					<AstroIcon class="size-6" />
-					Astro
-				</SocialPill2>
-				<SocialPill2>
-					<Node class="size-6" />
-					NodeJS
-				</SocialPill2>
-				<SocialPill2>
-					<Laravel class="size-6" />
-					Laravel
-				</SocialPill2>
-				<SocialPill2>
-					<Php class="size-6" />
-					PHP
-				</SocialPill2>
-				<SocialPill2>
-					<Python class="size-6" />
-					Python
-				</SocialPill2>
-				<SocialPill2>
-					<DataBase class="size-6" />
-					SQL
-				</SocialPill2>
-				<SocialPill2>
-					<Git class="size-6" />
-					Git
-				</SocialPill2>
-				<SocialPill2>
-					<Docker class="size-6" />
-					Docker
-				</SocialPill2>
-				<SocialPill2>
-					<Aws class="size-6" />
-					AWS
-				</SocialPill2>
-				<SocialPill2>
-					<FastApi class="size-6" />
-					FastAPI
-				</SocialPill2>
-				<SocialPill2>
-					<Flutter class="size-6" />
-					Flutter
-				</SocialPill2>
-				<SocialPill2>
-					<Figma class="size-6" />
-					Figma
-				</SocialPill2>
+			<div class="grid gap-8 md:grid-cols-2 animate-on-scroll animate-delay-200">
+				{SKILL_GROUPS.map(group => (
+					<div class="glass rounded-2xl p-6">
+						<h3 class="text-lg font-semibold text-slate-100 mb-1">{group.title}</h3>
+						<p class="text-sm text-slate-400 mb-5">{group.description}</p>
+						<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+							{group.skills.map(({ name, icon: Icon }) => (
+								<SocialPill2>
+									<Icon class="size-6" />
+									{name}
+								</SocialPill2>
+							))}
+						</div>
+					</div>
+				))}
 			</div>
 		</Container>
 
@@ -306,17 +310,22 @@ import profilePhoto from '../assets/profile photo.jpg'
 						y el diseño <span class="text-cyan-300 font-medium">UI/UX</span>.
 					</p>
 					<p class="text-lg text-slate-300 leading-relaxed mb-4">
-						Me especializo en diseñar e implementar arquitecturas modernas en la nube con
-						<span class="text-cyan-300 font-medium">AWS (Fargate, CDK)</span>, garantizando alta
-						disponibilidad, observabilidad y despliegues continuos automatizados (CI/CD). Tengo
-						experiencia robusta en backend con <span class="text-cyan-300 font-medium">Python (FastAPI)</span>
-						y <span class="text-cyan-300 font-medium">Node.js</span>,
-						desarrollo mobile con <span class="text-cyan-300 font-medium">Flutter</span> y su distribución
-						en App Store y Google Play, y paneles web con <span class="text-cyan-300 font-medium">React / TypeScript</span>.
+						Llevo <span class="text-cyan-300 font-medium">2+ años trabajando en producción</span>:
+						migré una plataforma a <span class="text-cyan-300 font-medium">AWS Fargate con CDK</span>,
+						automaticé su CI/CD sin tiempo de inactividad, desarrollo su backend en
+						<span class="text-cyan-300 font-medium">Python (FastAPI)</span>, su panel web en
+						<span class="text-cyan-300 font-medium">React / TypeScript</span> y su app en
+						<span class="text-cyan-300 font-medium">Flutter</span>, publicada en App Store y Google Play.
+					</p>
+					<p class="text-lg text-slate-300 leading-relaxed mb-4">
+						En mis proyectos llevo esa misma forma de trabajar: tests de verdad, análisis estático,
+						pipelines de CI, imágenes Docker de producción, infraestructura con
+						<span class="text-cyan-300 font-medium">Terraform</span> y despliegues automáticos con rollback.
 					</p>
 					<p class="text-lg text-slate-300 leading-relaxed">
-						Me apasiona resolver problemas complejos de concurrencia, diseñar sistemas de diseño
-						robustos en Figma y alinear la ingeniería técnica con los objetivos de negocio.
+						Me gustan los problemas difíciles —concurrencia, multi-tenancy, zonas horarias, consistencia
+						de datos— y alinear la ingeniería con lo que el negocio necesita. Estoy terminando la
+						Licenciatura en Informática en la UMSA.
 					</p>
 				</div>
 			</div>
@@ -481,10 +490,10 @@ import profilePhoto from '../assets/profile photo.jpg'
 	// Efecto typing
 	const texts = [
 		"Fullstack & Cloud Engineer",
-		"Cloud Architect · AWS (Fargate, CDK)",
-		"DevOps · CI/CD · IaC",
-		"Mobile Developer · Flutter",
-			"UI/UX Designer · Figma"
+		"Backend · FastAPI · Laravel · NestJS",
+		"Frontend · React · Vue · Next.js",
+		"Cloud & DevOps · AWS · Terraform",
+		"Mobile Developer · Flutter"
 	];
 
 	let textIndex = 0;

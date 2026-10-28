@@ -4,10 +4,11 @@ interface Props {
     title: string;
     company: string;
     description: string;
+    highlights?: string[];
     technologies?: string[];
     current?: boolean;
 }
-const { date, title, company, description, technologies = [], current = false } = Astro.props;
+const { date, title, company, description, highlights = [], technologies = [], current = false } = Astro.props;
 ---
 
 <article class="experience-card group">
@@ -54,6 +55,17 @@ const { date, title, company, description, technologies = [], current = false } 
             <p class="text-slate-400 mb-4 leading-relaxed">
                 {description}
             </p>
+
+            {highlights.length > 0 && (
+                <ul class="space-y-2 mb-5">
+                    {highlights.map(item => (
+                        <li class="flex gap-3 text-slate-400 leading-relaxed">
+                            <span class="mt-2 size-1.5 shrink-0 rounded-full bg-cyan-400"></span>
+                            <span>{item}</span>
+                        </li>
+                    ))}
+                </ul>
+            )}
 
             <!-- Tecnologías -->
             {technologies.length > 0 && (

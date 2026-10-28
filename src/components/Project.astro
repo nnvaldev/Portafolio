@@ -4,19 +4,38 @@ import ProjectModal from "./ProjectModal.astro";
 
 const PROJECT = [
     {
-        name: "IDM E-Commerce — Marketplace Multi-empresa ERP",
-        description: "Plataforma distribuida de alta disponibilidad para gestión de inventarios y ventas híbridas (B2C / B2B a crédito), con backend asíncrono y facturación electrónica SIAT.",
-        longDescription: "Trabajo de Taller de Grado (UMSA). Plataforma distribuida de alta disponibilidad para la gestión de inventarios heterogéneos y flujos de venta híbridos: B2C minorista y B2B mayorista a crédito con control estricto de saldo de línea.",
+        name: "AgendaPro — SaaS de Reservas Online",
+        description: "SaaS multi-negocio para barberías, consultorios y canchas: página pública de reservas sin registro, panel con agenda y horarios, correos en cola, CI/CD e infraestructura como código. 92 tests sobre PostgreSQL.",
+        longDescription: "Producto completo de punta a punta: el negocio configura servicios, equipo y horarios; sus clientes reservan desde un link público en segundos, sin crear cuenta; y el dueño gestiona todo desde un panel. Pensado para Bolivia (zona horaria de La Paz, precios en bolivianos, contacto por WhatsApp) y construido con prácticas de producción: aislamiento entre negocios, cero reservas dobles garantizado por la base de datos, pipeline de calidad y despliegue automático con rollback.",
         features: [
-            "Backend concurrente asíncrono con FastAPI + SQLAlchemy Async sobre PostgreSQL 16, aplicando bloqueos pesimistas (SELECT ... FOR UPDATE) para garantizar consistencia absoluta en mutaciones críticas de stock.",
-            "Micro-motor fiscal conforme al estándar SIAT (Bolivia): auto-emisión de facturas electrónicas en XML firmado (SHA-256) y generación de PDF con fpdf2, con flujos asíncronos en modo de contingencia ante caídas del servidor tributario.",
+            "Cero reservas dobles garantizado por PostgreSQL: restricción EXCLUDE con tstzrange sobre el profesional, que rechaza reservas que se cruzan aunque lleguen en paralelo; el servicio captura la violación y asigna al siguiente profesional libre.",
+            "Multi-tenant en una sola base: global scope por negocio aplicado antes del route model binding, así pedir un recurso de otro negocio devuelve 404 (cubierto por tests de aislamiento).",
+            "Motor de disponibilidad por zona horaria: bloques semanales con pausa de almuerzo, intervalo configurable, anticipación mínima, ventana de reserva y bloqueos de agenda; todo guardado en UTC y mostrado en hora de La Paz.",
+            "Panel en Vue 3 + TypeScript (Inertia, rutas tipadas con Wayfinder): agenda diaria con contacto por WhatsApp y estados, editor de horario semanal, servicios, equipo e indicadores del negocio.",
+            "Correos en cola con Redis (confirmación con .ics, recordatorio 24 h antes vía Scheduler, avisos de cancelación), encolados con afterCommit y sin romper la reserva si falla la cola.",
+            "DevOps: imagen de producción con FrankenPHP (HTTPS automático, Alpine, sin root), GitHub Actions (Pint, PHPStan nivel 7, lint, tipos, tests, Terraform), servidor en Oracle Cloud con Terraform y tests sin cuenta, y deploy automático con healthchecks, rollback y backups diarios."
+        ],
+        url: "#",
+        github: "https://github.com/nnvaldev/agendapro",
+        image: "/projectsCap/cap_ap_portada.png",
+        images: ["/projectsCap/cap_ap_portada.png", "/projectsCap/cap_ap_reserva.png", "/projectsCap/cap_ap_panel.png", "/projectsCap/cap_ap_horario.png"],
+        tags: ["Laravel 13", "Vue 3", "TypeScript", "PostgreSQL", "Redis", "Docker", "Terraform", "GitHub Actions"]
+    },
+    {
+        name: "IDM E-Commerce — Marketplace Multi-empresa ERP",
+        description: "Marketplace multi-empresa y ERP para una importadora de repuestos: ventas B2C y B2B a crédito, inventario multi-almacén con bloqueos pesimistas, POS de mostrador y flujo de facturación SIAT.",
+        longDescription: "Trabajo de Taller de Grado (UMSA). Plataforma para la gestión de inventarios heterogéneos (repuestos, lubricantes, vehículos) y flujos de venta híbridos: B2C minorista, B2B mayorista a crédito con control estricto de saldo de línea y POS en sucursal, sobre tres almacenes en La Paz, Cochabamba y Santa Cruz. Cualquier empresa puede registrarse como vendedora y operar aislada de las demás.",
+        features: [
+            "Backend asíncrono con FastAPI + SQLAlchemy Async sobre PostgreSQL 16, con bloqueos pesimistas (SELECT ... FOR UPDATE) en cada mutación de stock, restricción única producto-almacén con reintento y bitácora de movimientos.",
+            "Ciclo reservar → consumir: el carrito y el checkout reservan stock, la aprobación B2B lo consume y el rechazo lo libera; el crédito se valida al confirmar y otra vez al aprobar, con montos en Decimal y precio congelado en la orden.",
+            "Flujo de facturación SIAT (Bolivia, cliente simulado): la factura se guarda antes de enviarse, timeout de 5 s, modo contingencia con reintento por lotes de 50, emisión idempotente después de confirmar la venta y PDF con fpdf2.",
             "Logística distribuida multi-almacén interdepartamental (LP, CBBA, SCZ) con control de traspasos por estados transaccionales y escaneo nativo de códigos QR vía cámara web en el frontend.",
             "Panel administrativo y dashboards en React (TypeScript estricto) con control de acceso basado en roles (RBAC) granular en UI/API y analíticas de KPIs con Recharts."
         ],
         url: "#",
-        github: "https://github.com/nnvaldev/idm-ecommerce",
+        github: "https://github.com/nnvaldev/IDM-Ecommerce-System",
         image: "/projectsCap/cap_catalog.png",
-        images: ["/projectsCap/cap_catalog.png"],
+        images: ["/projectsCap/cap_catalog.png", "/projectsCap/cap_idm_reportes.png", "/projectsCap/cap_idm_pos.png", "/projectsCap/cap_idm_inventario.png", "/projectsCap/cap_idm_traspaso-qr.png", "/projectsCap/cap_idm_facturas.png"],
         tags: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "React", "TypeScript", "Recharts", "Docker"]
     },
     {
@@ -24,14 +43,14 @@ const PROJECT = [
         description: "Guía web de La Paz con mapa interactivo, filtro de accesibilidad en silla de ruedas, rutas turísticas trazadas, conversor multi-moneda y reservas de experiencias. Trilingüe (ES/EN/PT).",
         longDescription: "Google Maps te dice dónde estás; La Paz Tour te dice si puedes entrar. Aplicación web pensada para el turista que llega a La Paz con poco tiempo y muchas dudas: cuánto vale su plata, qué lugares son realmente accesibles, qué ruta hacer y cómo reservarla. Todo resuelto en una sola página, sin instalar nada y sin depender de APIs de pago.",
         features: [
-            "Mapa interactivo con Leaflet + OpenStreetMap (sin API key ni costo): 19 puntos georreferenciados con pines diferenciados por accesibilidad, popups con foto, precio de entrada, horario, contacto directo por WhatsApp y enlace de cómo llegar; incluye geolocalización del usuario.",
-            "Filtro de accesibilidad como funcionalidad protagonista: un clic deja en el mapa y en la lista solo los sitios con rampas, baños adaptados o acceso a nivel, con datos validados junto a aliados como FEDEBOL.",
+            "Mapa interactivo con Leaflet + OpenStreetMap (sin API key ni costo): 15 atractivos (más 4 paradas que aparecen al elegir una ruta) con pines diferenciados por accesibilidad, popups con foto, precio de entrada, horario, contacto directo por WhatsApp y enlace de cómo llegar; incluye geolocalización del usuario.",
+            "Filtro de accesibilidad como funcionalidad protagonista: un clic deja en el mapa y en la lista solo los sitios con rampas, baños adaptados o acceso a nivel.",
             "6 rutas turísticas dibujadas sobre el mapa como polilínea guía con paradas numeradas y ajuste automático de encuadre, cada una con duración, número de paradas y precio estimado.",
             "Conversor multi-moneda (8 divisas, tasa paralela) que no solo convierte: al elegir una moneda reprecia en vivo toda la página —entradas, rutas y experiencias— mediante eventos personalizados y persistencia en localStorage.",
-            "Internacionalización propia ES / EN / PT sin librerías externas: diccionario y sistema de atributos data-i18n que traduce texto, aria-labels y contenido generado dinámicamente, más modo claro/oscuro persistente.",
+            "Internacionalización propia ES / EN / PT sin librerías externas: diccionario de 99 claves por idioma y atributos data-i18n que traducen la interfaz, aria-labels y los popups del mapa, más modo claro/oscuro persistente.",
             "Módulo de experiencias tipo marketplace con checkout demo: modal de reserva, cálculo de total por número de personas y generación de código de reserva, junto a un directorio de comercios locales para empujar la economía del barrio."
         ],
-        url: "#",
+        url: "https://la-paz-tour.vercel.app/",
         github: "https://github.com/nnvaldev/LaPazTour",
         image: "/projectsCap/cap_lpt_hero.png",
         images: ["/projectsCap/cap_lpt_hero.png", "/projectsCap/cap_lpt_mapa.png", "/projectsCap/cap_lpt_rutas.png", "/projectsCap/cap_lpt_experiencias.png"],
@@ -54,25 +73,6 @@ const PROJECT = [
         image: "/projectsCap/cap_jb_home.png",
         images: ["/projectsCap/cap_jb_home.png", "/projectsCap/cap_jb_ofertas.png", "/projectsCap/cap_jb_empresa.png", "/projectsCap/cap_jb_nueva.png"],
         tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "JWT", "Docker", "Tailwind"]
-    },
-    {
-        name: "AgendaPro — SaaS de Reservas y Citas",
-        description: "Plataforma de agendamiento online para negocios de servicios: reservas en tiempo real, pago de seña y recordatorios automáticos, desde un panel multi-negocio. En desarrollo activo. 🚧",
-        longDescription: "Proyecto en desarrollo activo. AgendaPro es un SaaS multi-tenant que permite a barberías, consultorios, canchas y cualquier negocio de servicios recibir reservas online 24/7 sin llamadas ni mensajes. El cliente reserva en segundos desde una página pública, el negocio gestiona su agenda y su staff desde un solo panel, y el pago de seña reduce las ausencias. Cada negocio trabaja aislado en su propio espacio, listo para escalar.",
-        features: [
-            "Reserva pública sin fricción: el cliente elige servicio, profesional y horario disponible en segundos, sin necesidad de crear una cuenta.",
-            "Agenda y disponibilidad en tiempo real con WebSockets (Node.js): los cupos se bloquean al instante para evitar reservas dobles.",
-            "Pago de seña/anticipo con pasarela integrada para reducir ausencias (no-shows), con confirmación automática y reembolsos.",
-            "Recordatorios automáticos por email/WhatsApp y reprogramación o cancelación con un solo clic.",
-            "Panel multi-negocio (multi-tenant) en Laravel: gestión de servicios, staff, horarios y métricas de ocupación e ingresos.",
-            "Roles diferenciados (dueño / staff / cliente), interfaz responsive en Tailwind con modo claro/oscuro y despliegue en Docker con CI/CD."
-        ],
-        url: "#",
-        github: "#",
-        image: "/projectsCap/en-construccion.svg",
-        images: [],
-        tags: ["Laravel", "PHP", "Node.js", "Tailwind", "MySQL", "WebSockets", "Docker"],
-        wip: true
     }
 ];
 ---
